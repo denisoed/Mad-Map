@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-
-import {
-  Map, Marker
-} from 'mad-map'
+import { Map, Marker, DraggableOverlay } from 'mad-map'
 import pin from '../src/img/marker.svg'
-import DraggableOverlay from './incubator/draggable-overlay'
+import pushPin from '../src/img/push-pin.svg'
 
 const markers = {
   leuven1: [[50.879, 4.6997], 13],
@@ -122,8 +119,8 @@ export default class App extends Component {
               offset={[60, 87]}
               onDragMove={(anchor) => console.log('moving mad-map', anchor)}
               onDragEnd={(anchor) => { console.log('moved mad-map', anchor); this.setState({ dragAnchor: anchor }) }}
-              style={{ clipPath: 'polygon(100% 0, 83% 0, 79% 15%, 0 68%, 0 78%, 39% 84%, 43% 96%, 61% 100%, 79% 90%, 69% 84%, 88% 71%, 100% 15%)' }}>
-              {/* Added image */}
+            >
+              <img src={pushPin} width="80" height="80" />
             </DraggableOverlay>
           </Map>
         </div>
