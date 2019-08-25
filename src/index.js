@@ -17,24 +17,6 @@ const WARNING_DISPLAY_TIMEOUT = 300
 
 const NOOP = () => {}
 
-function wikimedia (x, y, z, dpr) {
-  const retina = typeof dpr !== 'undefined' ? dpr >= 2 : (typeof window !== 'undefined' && window.devicePixelRatio >= 2)
-  return `https://maps.wikimedia.org/osm-intl/${z}/${x}/${y}${retina ? '@2x' : ''}.png`
-}
-
-const providers = {
-  // const s = String.fromCharCode(97 + (x + y + z) % 3)
-  wikimedia: (x, y, z, dpr) => {
-    return `https://maps.wikimedia.org/osm-intl/${z}/${x}/${y}${dpr >= 2 ? '@2x' : ''}.png`
-  },
-  basemaps: (x, y, z) => {
-    return `https://maps.basemaps.cartocdn.com/light_all/${z}/${x}/${y}.png`
-  },
-  stamen: (x, y, z, dpr) => {
-    return `https://stamen-tiles.a.ssl.fastly.net/terrain/${z}/${x}/${y}${dpr >= 2 ? '@2x' : ''}.jpg`
-  }
-}
-
 // https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
 const lng2tile = (lon, zoom) => (lon + 180) / 360 * Math.pow(2, zoom)
 const lat2tile = (lat, zoom) => (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom)
@@ -143,6 +125,9 @@ class Map extends Component {
     animateMaxScreens: 5,
     minZoom: 1,
     maxZoom: 18,
+    provider: (x, y, z) => {
+      return `https://maps.basemaps.cartocdn.com/light_all/${z}/${x}/${y}.png`
+    },
     limitBounds: 'center',
     dprs: []
   }
@@ -1038,12 +1023,10 @@ class Map extends Component {
   }
 
   // display the tiles
-
   renderTiles () {
     const { oldTiles } = this.state
     const { dprs } = this.props
-    const mapUrl = providers[this.props.provider] || wikimedia
-
+    const mapUrl = this.props.provider
     const {
       tileMinX,
       tileMaxX,
@@ -1223,7 +1206,7 @@ class Map extends Component {
     }
 
     const linkStyle = {
-      color: '#0078A8',
+      color: '#CA2227',
       textDecoration: 'none'
     }
 
@@ -1287,7 +1270,7 @@ class Map extends Component {
   }
 
   render () {
-    const { touchEvents, twoFingerDrag } = this.props
+    const { touchEvents, twoFingerDrag, backgroundColor } = this.props
     const { width, height } = this.state
 
     const containerStyle = {
@@ -1296,7 +1279,7 @@ class Map extends Component {
       position: 'relative',
       display: 'inline-block',
       overflow: 'hidden',
-      background: '#dddddd',
+      background: backgroundColor || '#fff',
       touchAction: touchEvents ? (twoFingerDrag ? 'pan-x pan-y' : 'none') : 'auto'
     }
 
