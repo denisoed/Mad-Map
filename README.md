@@ -42,7 +42,7 @@
             zoom={this.state.zoom}
             // provider={(x, y, z) => {
             //   const s = String.fromCharCode(97 + (x + y + z) % 3)
-            //   return `https://${s}.basemaps.cartocdn.com/dark_all/${z}/${x}/${y}.png` // List providers https://leaflet-extras.github.io/leaflet-providers/preview
+            //   return `https://${s}.basemaps.cartocdn.com/light_all/${z}/${x}/${y}.png` // List providers https://leaflet-extras.github.io/leaflet-providers/preview
             // }}
             // backgroundColor={'#fff'}
             dprs={[1, 2]}
@@ -152,7 +152,9 @@ The children get passed these special props:
 
 **icon** - link to custom icon for pin `import pin from '../img/pin.svg'`.
 
-**payload** - Coordinates `[[lat, lng], zoom]` marker
+**position** - Coordinates `[[lat, lng], zoom]` marker. `zoom` - On what zoom to show the marker when switching to it
+
+**payload** - All marker data
 
 **width** - Width custom marker. Default `20`
 

@@ -1308,7 +1308,7 @@ class Marker extends Component {
     height: PropTypes.number,
 
     // input, passed to events
-    anchor: PropTypes.array.isRequired,
+    position: PropTypes.array.isRequired,
     payload: PropTypes.any,
 
     // optional modifiers
@@ -1344,7 +1344,7 @@ class Marker extends Component {
   // what do you expect to get back with the event
   eventParameters = (event) => ({
     event,
-    anchor: this.props.anchor,
+    position: this.props.position,
     payload: this.props.payload
   })
 
