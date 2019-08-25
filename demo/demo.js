@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Map, Marker, DraggableOverlay } from 'mad-map'
+import { Map, Marker } from 'mad-map'
 import pin from '../src/img/marker.svg'
-import pushPin from '../src/img/push-pin.svg'
 
 const lng2tile = (lon, zoom) => (lon + 180) / 360 * Math.pow(2, zoom)
 const lat2tile = (lat, zoom) => (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom)
@@ -114,10 +113,11 @@ export default class App extends Component {
 
     const markers = {
       Bishkek: [[42.883004, 74.582748], zoom],
-      Kara_Balta: [[42.81423, 73.84813], zoom],
       Issyk_Kul: [[42.499998, 77.499998], zoom],
       Naryn: [[41.42866, 75.99111], zoom],
-      Batken: [[40.06259, 70.81939], zoom]
+      Batken: [[40.06259, 70.81939], zoom],
+      Osh: [[40.52828, 72.7985], zoom],
+      Talas: [[42.52277, 72.24274], zoom]
     }
 
     return (
@@ -145,14 +145,6 @@ export default class App extends Component {
           {Object.keys(markers).map(key => (
             <Marker key={key} anchor={markers[key][0]} icon={pin} payload={key} onClick={this.handleMarkerClick} />
           ))}
-          <DraggableOverlay
-            anchor={this.state.dragAnchor}
-            offset={[60, 87]}
-            onDragMove={(anchor) => console.log('moving mad-map', anchor)}
-            onDragEnd={(anchor) => { console.log('moved mad-map', anchor); this.setState({ dragAnchor: anchor }) }}
-          >
-            <img src={pushPin} width="80" height="80" />
-          </DraggableOverlay>
         </Map>
         <div className="zoom">
           <button onClick={this.zoomIn} className="button-zoom">Zoom In</button>
