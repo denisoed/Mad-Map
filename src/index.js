@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import parentPosition from './utils/parent-position'
 import parentHasClass from './utils/parent-has-class'
 import debounce from './utils/debounce'
+import pin from '../src/img/marker.svg'
 
 const ANIMATION_TIME = 300
 const DIAGONAL_THROW_TIME = 1500
@@ -126,7 +127,8 @@ class Map extends Component {
     minZoom: 1,
     maxZoom: 18,
     provider: (x, y, z) => {
-      return `https://maps.basemaps.cartocdn.com/light_all/${z}/${x}/${y}.png`
+      const s = String.fromCharCode(97 + (x + y + z) % 3)
+      return `https://${s}.basemaps.cartocdn.com/dark_all/${z}/${x}/${y}.png`
     },
     limitBounds: 'center',
     dprs: []
@@ -1279,7 +1281,7 @@ class Map extends Component {
       position: 'relative',
       display: 'inline-block',
       overflow: 'hidden',
-      background: backgroundColor || '#fff',
+      background: backgroundColor || '#000',
       touchAction: touchEvents ? (twoFingerDrag ? 'pan-x pan-y' : 'none') : 'auto'
     }
 
@@ -1390,7 +1392,7 @@ class Marker extends Component {
         onMouseOver={this.handleMouseOver}
         onMouseOut={this.handleMouseOut}
       >
-        <img src={this.props.icon} width={29} height={34} alt='' />
+        <img src={this.props.icon || pin} width={29} height={34} alt='' />
       </div>
     )
   }

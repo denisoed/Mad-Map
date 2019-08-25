@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Map, Marker } from 'react-mad-map'
-import pin from '../src/img/marker.svg'
 
 const lng2tile = (lon, zoom) => (lon + 180) / 360 * Math.pow(2, zoom)
 const lat2tile = (lat, zoom) => (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom)
@@ -12,10 +11,6 @@ export default class App extends Component {
     this.state = {
       center: [40.682004, 74.692748],
       zoom: 7,
-      provider: (x, y, z) => {
-        const s = String.fromCharCode(97 + (x + y + z) % 3)
-        return `https://${s}.basemaps.cartocdn.com/dark_all/${z}/${x}/${y}.png` // List providers https://leaflet-extras.github.io/leaflet-providers/preview
-      },
       metaWheelZoom: false,
       twoFingerDrag: false,
       animate: true,
@@ -109,7 +104,7 @@ export default class App extends Component {
   }
 
   render () {
-    const { center, zoom, provider, animate, metaWheelZoom, twoFingerDrag, zoomSnap, mouseEvents, touchEvents, animating, minZoom, maxZoom } = this.state
+    const { center, zoom, animate, metaWheelZoom, twoFingerDrag, zoomSnap, mouseEvents, touchEvents, animating, minZoom, maxZoom } = this.state
 
     const markers = {
       Bishkek: [[42.883004, 74.582748], zoom],
@@ -126,7 +121,11 @@ export default class App extends Component {
           limitBounds='edge'
           center={center}
           zoom={zoom}
-          provider={provider}
+          // provider={(x, y, z) => {
+          //   const s = String.fromCharCode(97 + (x + y + z) % 3)
+          //   return `https://maps.basemaps.cartocdn.com/light_all/${z}/${x}/${y}.png` // List providers https://leaflet-extras.github.io/leaflet-providers/preview
+          // }}
+          // backgroundColor={'#fff'}
           dprs={[1, 2]}
           onBoundsChanged={this.handleBoundsChange}
           onClick={this.handleClick}
@@ -140,10 +139,9 @@ export default class App extends Component {
           touchEvents={touchEvents}
           minZoom={minZoom}
           maxZoom={maxZoom}
-          backgroundColor={'#000'}
           boxClassname="mad-map">
           {Object.keys(markers).map(key => (
-            <Marker key={key} anchor={markers[key][0]} icon={pin} payload={key} onClick={this.handleMarkerClick} />
+            <Marker key={key} anchor={markers[key][0]} payload={key} onClick={this.handleMarkerClick} />
           ))}
         </Map>
         <div className="zoom">

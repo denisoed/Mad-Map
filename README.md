@@ -1,5 +1,8 @@
 # Mad Map - Light React Map
 
+[![Developed by Mad Devs](https://maddevs.io/badge-dark.svg)](https://maddevs.io)
+&nbsp;
+
 ![](MadMap.jpg)
 
 ## Install:
@@ -14,10 +17,6 @@
         this.state = {
             center: [40.682004, 74.692748],
             zoom: 7,
-            provider: (x, y, z) => {
-                const s = String.fromCharCode(97 + (x + y + z) % 3)
-                return `https://${s}.basemaps.cartocdn.com/dark_all/${z}/${x}/${y}.png`
-            },
             metaWheelZoom: false,
             twoFingerDrag: false,
             animate: true,
@@ -41,7 +40,11 @@
         <Map
             center={this.state.center}
             zoom={this.state.zoom}
-            provider={this.state.provider}
+            // provider={(x, y, z) => {
+            //   const s = String.fromCharCode(97 + (x + y + z) % 3)
+            //   return `https://${s}.basemaps.cartocdn.com/dark_all/${z}/${x}/${y}.png` // List providers https://leaflet-extras.github.io/leaflet-providers/preview
+            // }}
+            // backgroundColor={'#fff'}
             dprs={[1, 2]}
             animate={this.state.animate}
             metaWheelZoom={this.state.metaWheelZoom}
@@ -51,7 +54,6 @@
             touchEvents={this.state.touchEvents}
             minZoom={this.state.minZoom}
             maxZoom={this.state.maxZoom}
-            backgroundColor={'#000'}
             boxClassname="mad-map"
         >
             {Object.keys(markers).map(key => (
@@ -62,7 +64,6 @@
     };
 
 > More examples can be found in the demo/demo.js file
-
 ## Options:
 
 ### Map
