@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Map, Marker } from 'react-mad-map'
+import meonmap from './meonmap.svg'
 
 const lng2tile = (lon, zoom) => (lon + 180) / 360 * Math.pow(2, zoom)
 const lat2tile = (lat, zoom) => (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom)
@@ -20,6 +21,7 @@ export default class App extends Component {
       touchEvents: true,
       minZoom: 1,
       maxZoom: 18,
+      userPosition: { lat: 0, lon: 0 }
       // dragAnchor: [48.8565, 2.3475] for drag element
     }
   }
@@ -46,6 +48,12 @@ export default class App extends Component {
   handleAnimationStop = () => {
     this.setState({ animating: false })
   }
+
+  getUserPosition = () => {
+    navigator.geolocation.getCurrentPosition((location) => {
+      this.setState({ userPosition: { lat: location.coords.latitude, lon: location.coords.longitude } });
+    });
+  };
 
   zoomIn = () => {
     if (this.state.zoom < this.state.maxZoom) {
@@ -103,8 +111,14 @@ export default class App extends Component {
     }
   }
 
+  componentDidMount() {
+    this.getUserPosition();
+  }
+
   render () {
-    const { center, zoom, animate, metaWheelZoom, twoFingerDrag, zoomSnap, mouseEvents, touchEvents, animating, minZoom, maxZoom } = this.state
+    const { center, zoom, animate, metaWheelZoom, twoFingerDrag, zoomSnap, mouseEvents, touchEvents, animating, minZoom, maxZoom, userPosition } = this.state
+
+    const meOnMap = [[userPosition.lat, userPosition.lon], 14];
 
     const markers = {
       Bishkek: [[42.883004, 74.582748], zoom],
@@ -143,6 +157,7 @@ export default class App extends Component {
           {Object.keys(markers).map(key => (
             <Marker key={key} anchor={markers[key][0]} payload={key} onClick={this.handleMarkerClick} />
           ))}
+          <Marker anchor={meOnMap[0]} payload={meOnMap} width={40} height={40} icon={meonmap} onClick={this.handleMarkerClick} />
         </Map>
         <div className="zoom">
           <button onClick={this.zoomIn} className="button-zoom">Zoom In</button>
@@ -164,6 +179,7 @@ export default class App extends Component {
         </div>
         <section className={'controls'}>
           <div style={{marginTop: 20}}>
+            <button onClick={() => this.setState({ center: meOnMap[0], zoom: meOnMap[1] })} className="button-pin">Me on map</button>
             {Object.keys(markers).map(key => (
               <button key={key} onClick={() => this.setState({ center: markers[key][0], zoom: markers[key][1] })} className="button-pin">{key}</button>
             ))}
