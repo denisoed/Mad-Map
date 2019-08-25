@@ -153,3 +153,7 @@ The children get passed these special props:
 **icon** - link to custom icon for pin `import pin from '../img/pin.svg'`.
 
 **payload** - Coordinates `[[lat, lng], zoom]` marker
+
+**width** - Width custom marker. Default `20`
+
+**height** - Height custom marker. Default `29`
