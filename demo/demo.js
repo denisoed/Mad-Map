@@ -137,7 +137,7 @@ export default class App extends Component {
           zoom={zoom}
           // provider={(x, y, z) => {
           //   const s = String.fromCharCode(97 + (x + y + z) % 3)
-          //   return `https://maps.basemaps.cartocdn.com/light_all/${z}/${x}/${y}.png` // List providers https://leaflet-extras.github.io/leaflet-providers/preview
+          //   return `https://${s}.basemaps.cartocdn.com/light_all/${z}/${x}/${y}.png` // List providers https://leaflet-extras.github.io/leaflet-providers/preview
           // }}
           // backgroundColor={'#fff'}
           dprs={[1, 2]}
