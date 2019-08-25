@@ -52,7 +52,7 @@ var config = {
     ],
     alias: {
       '~': path.join(__dirname, './demo'),
-      'mad-map': path.join(__dirname, './src')
+      'react-mad-map': path.join(__dirname, './src')
     }
   },
   plugins: [

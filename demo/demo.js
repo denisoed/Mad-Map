@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, Marker } from 'mad-map'
+import { Map, Marker } from 'react-mad-map'
 import pin from '../src/img/marker.svg'
 
 const lng2tile = (lon, zoom) => (lon + 180) / 360 * Math.pow(2, zoom)
@@ -25,7 +25,7 @@ export default class App extends Component {
       touchEvents: true,
       minZoom: 1,
       maxZoom: 18,
-      dragAnchor: [48.8565, 2.3475]
+      // dragAnchor: [48.8565, 2.3475] for drag element
     }
   }
 

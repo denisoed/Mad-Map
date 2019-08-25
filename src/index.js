@@ -1408,32 +1408,6 @@ function isDescendentOf (element, ancestor) {
 }
 
 class DraggableOverlay extends Component {
-  // static propTypes = {
-  //   // input
-  //   anchor: PropTypes.array.isRequired,
-  //   offset: PropTypes.array,
-
-  //   // passed to div
-  //   className: PropTypes.string,
-
-  //   // mad-map variables
-  //   left: PropTypes.number,
-  //   top: PropTypes.number,
-
-  //   // map state
-  //   mapState: PropTypes.shape({
-  //     center: PropTypes.array,
-  //     zoom: PropTypes.number,
-  //     bounds: PropTypes.array,
-  //     width: PropTypes.number,
-  //     height: PropTypes.number
-  //   }),
-
-  //   // mad-map functions
-  //   latLngToPixel: PropTypes.func,
-  //   pixelToLatLng: PropTypes.func,
-  // }
-
   constructor (props) {
     super(props)
     this.state = {

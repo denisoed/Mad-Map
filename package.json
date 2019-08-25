@@ -1,17 +1,17 @@
 {
-  "name": "mad-map",
+  "name": "react-mad-map",
   "version": "0.0.1",
-  "description": "ReactJS maps",
+  "description": "React Mad Map",
   "author": "Denisoed",
   "license": "MIT",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/denisoed/Mad-Map.git"
+    "url": "git+https://github.com/denisoed/react-mad-map"
   },
   "bugs": {
-    "url": "https://github.com/denisoed/Mad-Map/issues"
+    "url": "https://github.com/denisoed/react-mad-map/issues"
   },
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --history-api-fallback --hot --host 0.0.0.0 --port 4040",
