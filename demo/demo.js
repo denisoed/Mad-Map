@@ -80,7 +80,7 @@ export default class App extends Component {
   }
 
   zoomInMin = () => {
-    var value = this.state.minZoom;
+    let value = this.state.minZoom;
     value++;
     if (value >= 1 && value <= 18 && value <= this.state.maxZoom) {
       this.setState({ minZoom: value })
@@ -88,7 +88,7 @@ export default class App extends Component {
   }
 
   zoomOutMin = () => {
-    var value = this.state.minZoom;
+    let value = this.state.minZoom;
     value--;
     if (value >= 1 && value <= 18 && value <= this.state.maxZoom) {
       this.setState({ minZoom: value })
@@ -96,7 +96,7 @@ export default class App extends Component {
   }
 
   zoomInMax = () => {
-    var value = this.state.maxZoom;
+    let value = this.state.maxZoom;
     value++;
     if (value >= 1 && value <= 18 && value >= this.state.minZoom) {
       this.setState({ maxZoom: value })
@@ -104,7 +104,7 @@ export default class App extends Component {
   }
 
   zoomOutMax = () => {
-    var value = this.state.maxZoom;
+    let value = this.state.maxZoom;
     value--;
     if (value >= 1 && value <= 18 && value >= this.state.minZoom) {
       this.setState({ maxZoom: value })
@@ -188,16 +188,13 @@ export default class App extends Component {
             <div className="zoomMinMax">
               <h6>Min zoom</h6>
               <span className="input-number-decrement" onClick={() => this.zoomOutMin()}>–</span>
-              <input onChange = {
-                  (e) => this.setState({
-                    minZoom: parseInt(e.target.value) || 1
-                  })
-                }
+              <input
                 className="input-number"
                 type="text"
                 value={minZoom}
                 min="0"
                 max="10"
+                readOnly
               />
               <span className="input-number-increment" onClick={() => this.zoomInMin()}>+</span>
             </div>
@@ -211,6 +208,7 @@ export default class App extends Component {
                 value={maxZoom}
                 min="0"
                 max="10"
+                readOnly
               />
               <span className="input-number-increment" onClick={() => this.zoomInMax()}>+</span>
             </div>
