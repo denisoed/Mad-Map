@@ -1,4 +1,4 @@
-# Mad Map - Light React Map
+# React Map
 
 [![Developed by Mad Devs](https://maddevs.io/badge-dark.svg)](https://maddevs.io)
 &nbsp;
@@ -6,6 +6,8 @@
 ![](MadMap.jpg)
 
 > Demo: [https://9r9qc.csb.app](https://9r9qc.csb.app)
+
+> Create maps(not free): [https://cloud.maptiler.com/customize/#darkmatter/0.81/0/0](https://cloud.maptiler.com/customize/#darkmatter/0.81/0/0)
 
 ## Install:
     npm install --save react-mad-map

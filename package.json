@@ -1,6 +1,6 @@
 {
   "name": "react-mad-map",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "React Mad Map",
   "author": "Denisoed",
   "license": "MIT",
@@ -27,7 +27,24 @@
     "LICENSE.md",
     "README.md"
   ],
-  "dependencies": {},
+  "keywords": [
+    "react",
+    "map",
+    "react-map",
+    "react map",
+    "map react",
+    "js map",
+    "free react map",
+    "free map",
+    "leaflet",
+    "mapbox",
+    "openstreetmap"
+  ],
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
   "peerDependencies": {
     "prop-types": "*"
   },
@@ -52,9 +69,6 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "3.0.1",
     "file-loader": "^1.1.4",
-    "prop-types": "^15.6.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
     "rollup": "^1.6.0",
     "rollup-plugin-babel": "3",
     "webpack": "^3.6.0",
