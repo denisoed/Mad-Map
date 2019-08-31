@@ -61,7 +61,7 @@
             boxClassname="mad-map"
         >
             {Object.keys(markers).map(key => (
-                <Marker key={key} anchor={markers[key][0]} payload={key} />
+                <Marker key={key} position={markers[key][0]} payload={key} />
             ))}
         </Map>
         ...
