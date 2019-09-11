@@ -3,7 +3,7 @@
 [![Developed by Mad Devs](https://maddevs.io/badge-dark.svg)](https://maddevs.io)
 &nbsp;
 
-![](MadMap.jpg)
+![React Map](MadMap.jpg)
 
 > Demo: [https://9r9qc.csb.app](https://9r9qc.csb.app)
 
@@ -132,26 +132,6 @@
 
 **backgroundColor** - Background color behind the map. Default `#fff`
 
-### Overlays
-
-`<Map />` takes random React components as its children. The children may have these special props:
-
-**anchor** - At which coordinates `[lat, lng]` to anchor the overlay with the map.
-
-**offset** - Offset in pixels relative to the anchor.
-
-The children get passed these special props:
-
-**left** - Pixels from the left of the map, calculated from `anchor` and `offset`
-
-**top** - Pixels from the top of the map, calculated from `anchor` and `offset`
-
-**mapState** - An object `{ center, zoom, bounds, width, height }` that gets updated at every animation frame.
-
-**latLngToPixel** - A helper `function (latLng, center, zoom)` that returns the position in pixels `[x, y]` for any `[lat, lng]`. The last 2 arguments are optional.
-
-**pixelToLatLng** - A helper `function (pixel, center, zoom)` that converts any pixel coordinates `[x, y]` to `[lat, lng]`. The last 2 arguments are optional.
-
 ### Markers
 
 **icon** - link to custom icon for pin `import pin from '../img/pin.svg'`.
@@ -163,3 +143,5 @@ The children get passed these special props:
 **width** - Width custom marker. Default `20`
 
 **height** - Height custom marker. Default `29`
+
+**link** - Link to the page. Default `null`

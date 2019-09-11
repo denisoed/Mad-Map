@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import parentPosition from './utils/parent-position'
 import parentHasClass from './utils/parent-has-class'
@@ -1328,7 +1329,9 @@ class Marker extends Component {
     latLngToPixel: PropTypes.func,
     pixelToLatLng: PropTypes.func,
 
-    icon: PropTypes.string
+    icon: PropTypes.string,
+
+    link: PropTypes.string
   }
 
   constructor (props) {
@@ -1380,7 +1383,7 @@ class Marker extends Component {
   // render
 
   render () {
-    const { width, height, left, top, onClick } = this.props
+    const { width, height, left, top, onClick, link } = this.props
 
     const style = {
       position: 'absolute',
@@ -1396,11 +1399,25 @@ class Marker extends Component {
         onMouseOver={this.handleMouseOver}
         onMouseOut={this.handleMouseOut}
       >
-        {this.props.icon && <img src={this.props.icon} width={width || this.state.width} height={height || this.props.height} alt='Marker' />}
-        {!this.props.icon &&
-          <svg width={width || this.state.width} height={height || this.props.height} viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6.5 0C2.91014 0 0 2.90163 0 6.48098C0 10.1529 4.08943 15.5729 5.78129 17.657C6.15271 18.1143 6.84729 18.1143 7.21871 17.657C8.91057 15.5729 13 10.1529 13 6.48098C13 2.90163 10.0899 0 6.5 0ZM6.5 8.79562C5.21764 8.79562 4.17857 7.75959 4.17857 6.48098C4.17857 5.20238 5.21764 4.16635 6.5 4.16635C7.78236 4.16635 8.82143 5.20238 8.82143 6.48098C8.82143 7.75959 7.78236 8.79562 6.5 8.79562Z" fill="#CA2227"/>
-          </svg>
+        {link &&
+          <Link to={link}>
+            {this.props.icon && <img src={this.props.icon} width={width || this.state.width} height={height || this.props.height} alt='Marker' />}
+            {!this.props.icon &&
+              <svg width={width || this.state.width} height={height || this.props.height} viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.5 0C2.91014 0 0 2.90163 0 6.48098C0 10.1529 4.08943 15.5729 5.78129 17.657C6.15271 18.1143 6.84729 18.1143 7.21871 17.657C8.91057 15.5729 13 10.1529 13 6.48098C13 2.90163 10.0899 0 6.5 0ZM6.5 8.79562C5.21764 8.79562 4.17857 7.75959 4.17857 6.48098C4.17857 5.20238 5.21764 4.16635 6.5 4.16635C7.78236 4.16635 8.82143 5.20238 8.82143 6.48098C8.82143 7.75959 7.78236 8.79562 6.5 8.79562Z" fill="#CA2227"/>
+              </svg>
+            }
+          </Link>
+        }
+        {!link &&
+          <React.Fragment>
+            {this.props.icon && <img src={this.props.icon} width={width || this.state.width} height={height || this.props.height} alt='Marker' />}
+            {!this.props.icon &&
+              <svg width={width || this.state.width} height={height || this.props.height} viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.5 0C2.91014 0 0 2.90163 0 6.48098C0 10.1529 4.08943 15.5729 5.78129 17.657C6.15271 18.1143 6.84729 18.1143 7.21871 17.657C8.91057 15.5729 13 10.1529 13 6.48098C13 2.90163 10.0899 0 6.5 0ZM6.5 8.79562C5.21764 8.79562 4.17857 7.75959 4.17857 6.48098C4.17857 5.20238 5.21764 4.16635 6.5 4.16635C7.78236 4.16635 8.82143 5.20238 8.82143 6.48098C8.82143 7.75959 7.78236 8.79562 6.5 8.79562Z" fill="#CA2227"/>
+              </svg>
+            }
+          </React.Fragment>
         }
       </div>
     )

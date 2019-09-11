@@ -155,7 +155,7 @@ export default class App extends Component {
           maxZoom={maxZoom}
           boxClassname="mad-map">
           {Object.keys(markers).map(key => (
-            <Marker key={key} position={markers[key][0]} payload={key} onClick={this.handleMarkerClick} />
+            <Marker key={key} position={markers[key][0]} link={`/about/${key}`} payload={key} onClick={this.handleMarkerClick} />
           ))}
           <Marker position={meOnMap[0]} payload={meOnMap} width={40} height={40} icon={meonmap} onClick={this.handleMarkerClick} />
         </Map>
